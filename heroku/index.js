@@ -30,8 +30,10 @@ app.get(['/facebook', '/instagram'], function(req, res) {
     req.query['hub.mode'] == 'subscribe' &&
     req.query['hub.verify_token'] == token
   ) {
+     console.log(' TOKEN Verify  ');
     res.send(req.query['hub.challenge']);
   } else {
+     console.log(' TOKEN Not Verify  ');
     res.sendStatus(400);
   }
 });
@@ -39,14 +41,14 @@ app.get(['/facebook', '/instagram'], function(req, res) {
 app.post('/facebook', function(req, res) {
   console.log('Facebook request body:', req.body);
 
-  if (!req.isXHubValid()) {
-    console.log('Warning - request header X-Hub-Signature not present or invalid');
-    console.log('INVALID !!!!!!!!!');
-    res.sendStatus(401);
-    return;
-  }
+  //if (!req.isXHubValid()) {
+   // console.log('Warning - request header X-Hub-Signature not present or invalid');
+   // console.log('INVALID !!!!!!!!!');
+   // res.sendStatus(401);
+   // return;
+ // }
 
-  console.log('request header X-Hub-Signature validated');
+ // console.log('request header X-Hub-Signature validated');
   console.log('VALID        ::::::::::');
   // Process the Facebook updates here
   received_updates.unshift(req.body);
