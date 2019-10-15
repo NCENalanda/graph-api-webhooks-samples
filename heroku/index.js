@@ -25,15 +25,23 @@ app.get('/', function(req, res) {
   res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
 });
 
+app.get('/setupdate', function(req, res) {
+  console.log("received_updates");
+  
+  res.send('SET-DUMP-CLEAR');
+  
+});
+
+
 app.get(['/facebook', '/instagram'], function(req, res) {
   if (
     req.query['hub.mode'] == 'subscribe' &&
     req.query['hub.verify_token'] == token
   ) {
-     console.log(' TOKEN Verify  ');
+     console.log(" TOKEN Verify  ");
     res.send(req.query['hub.challenge']);
   } else {
-     console.log(' TOKEN Not Verify  ');
+     console.log(" TOKEN Not Verify  ");
     res.sendStatus(400);
   }
 });
