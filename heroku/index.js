@@ -27,7 +27,7 @@ app.get('/', function(req, res) {
 
 app.get('/setupdate', function(req, res) {
   console.log("received_updates");
-  
+  received_updates=null;
   res.send('SET-DUMP-CLEAR');
   
 });
